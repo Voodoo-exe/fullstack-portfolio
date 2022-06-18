@@ -1,26 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import './About.scss';
 import {motion} from 'framer-motion';
-import { images } from '../../constants';
+import { urlFor, client } from "../../client";
 
 
-const abouts = [
-  {
-    title: "Web Development",
-    description:
-      "I am good at Web Dev. I have experience with Full Stack (MERN).",
-    imgURL: images.about01,
-  },
-  {
-    title: "Data Scientist",
-    description:
-      "I love Data and I love playing with it. I have good experience with Python and libraries like Pandas, Numpy, Scikit Learn, TensorFlow etc.",
-    imgURL: images.about02,
-  },
-];
 const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "abouts"]';
+
+    client.fetch(query).then((data) => {
+      setAbouts(data);
+    });
+  }, []);
   return (
-    <>
+    <div id="about">
       <h2 className="head-text">
         Welcome to my
         <br />
@@ -36,13 +31,18 @@ const About = () => {
             className="app__profile-item"
             key={about.title + index}
           >
-            <img src={about.imgURL} alt={about.title} />
-            <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
-            <p className="p-text" style={{ marginTop: 10}}>{about.description}</p>
+            <img src={urlFor(about.imgUrl)} alt={about.title} />
+            <h2 className="bold-text" style={{ marginTop: 20 }}>
+              {about.title}
+            </h2>
+            <p className="p-text" style={{ marginTop: 10 }}>
+              {about.description}
+            </p>
           </motion.div>
         ))}
       </div>
-    </>
-  );}
+    </div>
+  );
+};
 
 export default About
