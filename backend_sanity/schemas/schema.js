@@ -11,6 +11,7 @@ import experiences from './experiences'
 import skills from './skills'
 import works from './works'
 import workExperience from './workExperience'
+import me from './me'
 
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -27,6 +28,7 @@ export default createSchema({
     experiences,
     skills,
     works,
-    workExperience
+    workExperience,
+    me,
   ]),
 })
