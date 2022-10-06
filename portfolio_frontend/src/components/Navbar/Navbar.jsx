@@ -21,6 +21,16 @@ const Navbar = () => {
             <a href={`#${item}`}>{item}</a>
           </li>
         ))}
+        <li li className="app__flex p-text">
+          <div />
+          <a
+            href="https://voodoo-exe.github.io/jaswant-resume/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            resume
+          </a>
+        </li>
       </ul>
 
       <div className="app__navbar-menu">
